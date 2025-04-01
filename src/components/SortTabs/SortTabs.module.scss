@@ -1,0 +1,39 @@
+.sortTabs {
+  display: flex;
+  background: $white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+}
+
+.tab {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: $black-text;
+  background: $white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $blue-light;
+  }
+
+  &.active {
+    background: $blue-primary;
+    color: $white;
+
+    &:hover {
+      background: $blue-primary;
+    }
+  }
+
+  &:not(:last-child) {
+    border-right: 1px solid $gray-border;
+  }
+}

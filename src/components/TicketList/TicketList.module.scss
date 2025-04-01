@@ -1,0 +1,25 @@
+.ticketList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loadMoreButton {
+  background: $blue-primary;
+  color: $white;
+  border: none;
+  border-radius: $border-radius;
+  padding: 15px;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 10px;
+
+  &:hover {
+    background: darken($blue-primary, 10%);
+  }
+}

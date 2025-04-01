@@ -1,0 +1,41 @@
+.filter {
+  background: $white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 20px 0;
+}
+
+.title {
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 0 20px 10px;
+  margin: 0;
+  color: $black-text;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterItem {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: $font-size-sm;
+
+  &:hover {
+    background: $blue-light;
+  }
+}
+
+.checkbox {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  accent-color: $blue-primary;
+}

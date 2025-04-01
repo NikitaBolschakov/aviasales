@@ -1,0 +1,56 @@
+.ticket {
+  background: $white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.price {
+  color: $blue-primary;
+  font-size: $font-size-lg;
+  font-weight: 600;
+}
+
+.airlineLogo {
+  width: 110px;
+  height: 36px;
+}
+
+.segments {
+  display: grid;
+  gap: 20px;
+}
+
+.segment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.segmentTitle {
+  font-size: $font-size-xs;
+  color: $gray-text;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.segmentTime {
+  font-size: $font-size-md;
+  color: $black-text;
+  display: block;
+}
+
+.segmentStopsAirports {
+  font-size: $font-size-md;
+  color: $black-text;
+  display: block;
+}
