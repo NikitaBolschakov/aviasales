@@ -7,6 +7,7 @@ const initialState = {
     noStops: true,
     oneStop: true,
     twoStops: true,
+    threeStops: true,
   },
 };
 
@@ -23,13 +24,13 @@ const filterReducer = (state = initialState, action) => {
           noStops: newValue, // Все фильтры тоже folse
           oneStop: newValue,
           twoStops: newValue,
+          threeStops: newValue,
         },
       };
     }
 
     // переключение одного фильтра
     case TOGGLE_FILTER: {
-  
       const updatedFilters = {
         ...state.filters,
         [action.payload]: !state.filters[action.payload], // Инвертируем значение
@@ -41,14 +42,14 @@ const filterReducer = (state = initialState, action) => {
       }
 
       // Если все галочки включены, включаем "Все"
-      const allFiltersOn = ['noStops', 'oneStop', 'twoStops'].every((key) => updatedFilters[key]);
+      const allFiltersOn = ['noStops', 'oneStop', 'twoStops', 'threeStops'].every((key) => updatedFilters[key]);
       if (allFiltersOn) {
         updatedFilters.all = true;
       }
 
       return {
         ...state,
-        filters: updatedFilters, 
+        filters: updatedFilters,
       };
     }
 

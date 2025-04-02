@@ -7,6 +7,6 @@ export const toggleAllFilters = () => ({
 
 // Экшен для переключения ОДНОГО фильтра
 export const toggleFilter = (filterName) => ({
-  type: TOGGLE_FILTER, 
+  type: TOGGLE_FILTER,
   payload: filterName, // название фильтра: 'noStops', 'oneStop' и т.д.
 });

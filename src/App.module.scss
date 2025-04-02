@@ -1,8 +1,8 @@
 .app {
   display: grid;
   grid-template-areas:
-    "header header"
-    "sidebar content";
+    'header header'
+    'sidebar content';
   grid-template-columns: $sidebar-width 1fr;
   grid-template-rows: auto 1fr;
   gap: 20px;
@@ -12,9 +12,9 @@
 
   @media (max-width: 768px) {
     grid-template-areas:
-      "header"
-      "sidebar"
-      "content";
+      'header'
+      'sidebar'
+      'content';
     grid-template-columns: 1fr;
     padding: 20px;
   }

@@ -4,3 +4,9 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 // Типы экшенов для сортировки
 export const SET_SORT = 'SET_SORT';
+
+// Типы экшенов для запроса билетов
+export const SET_SEARCH_ID = 'SET_SEARCH_ID'; // id получен
+export const FETCH_TICKETS_START = 'FETCH_TICKETS_START'; // старт запроса
+export const FETCH_TICKETS_SUCCESS = 'FETCH_TICKETS_SUCCESS'; // данные получены
+export const FETCH_TICKETS_ERROR = 'FETCH_TICKETS_ERROR'; // ошибка при получении данных

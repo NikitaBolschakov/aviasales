@@ -1,47 +1,34 @@
 import styles from './Ticket.module.scss';
+import { formatTime, formatDuration, formatStopsText } from '../../utils/helpers';
 
 const Ticket = ({ ticket }) => {
   return (
     <div className={styles.ticket}>
       <div className={styles.header}>
         <div className={styles.price}>{ticket.price} ₽</div>
-        <img 
-          src={`/airlines/${ticket.carrier}.png`} 
-          alt={ticket.carrier} 
-          className={styles.airlineLogo}
-        />
+        <img className={styles.airlineLogo} src={`//pics.avs.io/99/36/${ticket.carrier}.png`} alt={ticket.carrier} />
       </div>
-      
-      <div className={styles.segments}>
-        <div className={styles.segment}>
+
+      {ticket.segments.map((segment, i) => (
+        <div key={i} className={styles.segment}>
           <div className={styles.segmentRoute}>
             <span className={styles.segmentTitle}>
-              {ticket.origin} - {ticket.destination}
+              {segment.origin} - {segment.destination}
             </span>
-            <span className={styles.segmentTime}>
-              {ticket.departure_time} - {ticket.arrival_time}
-            </span>
+            <span className={styles.segmentTime}>{formatTime(segment.date, segment.duration)}</span>
           </div>
-          
+
           <div className={styles.segmentDuration}>
             <span className={styles.segmentTitle}>В пути</span>
-            <span className={styles.segmentTime}>
-              {Math.floor(ticket.duration / 60)}ч {ticket.duration % 60}м
-            </span>
+            <span className={styles.segmentTime}>{formatDuration(segment.duration)}</span>
           </div>
-          
+
           <div className={styles.segmentStops}>
-            <span className={styles.segmentTitle}>
-              {ticket.stops === 0 
-                ? 'Без пересадок' 
-                : `${ticket.stops} пересадки`}
-            </span>
-            <span className={styles.segmentStopsAirports}>
-              {ticket.stops_airports?.join(', ')}
-            </span>
+            <span className={styles.segmentTitle}>{formatStopsText(segment.stops.length)}</span>
+            <span className={styles.segmentStopsAirports}>{segment.stops.join(', ')}</span>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

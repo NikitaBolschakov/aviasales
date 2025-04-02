@@ -4,6 +4,7 @@
   box-shadow: $box-shadow;
   padding: 20px;
   margin-bottom: 20px;
+  min-height: 184px;
 }
 
 .header {
@@ -33,6 +34,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .segmentTitle {
@@ -47,10 +49,12 @@
   font-size: $font-size-md;
   color: $black-text;
   display: block;
+  font-weight: 600;
 }
 
 .segmentStopsAirports {
   font-size: $font-size-md;
   color: $black-text;
   display: block;
+  font-weight: 600;
 }

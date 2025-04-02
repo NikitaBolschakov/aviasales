@@ -25,11 +25,12 @@ const SortTabs = () => {
       >
         Самый быстрый
       </button>
-      <button 
+      <button
         className={`${styles.tab} ${sortBy === 'optimal' ? styles.active : ''}`}
         onClick={() => handleSort('optimal')}
       >
-        Оптимальный</button>
+        Оптимальный
+      </button>
     </div>
   );
 };

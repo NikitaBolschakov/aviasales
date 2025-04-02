@@ -45,7 +45,7 @@ const Filter = () => {
             type="checkbox"
             className={styles.checkbox}
             checked={filters.oneStop}
-            onChange={() => handleToggleFilter('oneStop')} 
+            onChange={() => handleToggleFilter('oneStop')}
           />
           <span>1 пересадка</span>
         </label>
@@ -58,6 +58,16 @@ const Filter = () => {
             onChange={() => handleToggleFilter('twoStops')}
           />
           <span>2 пересадки</span>
+        </label>
+
+        <label className={styles.filterItem}>
+          <input
+            type="checkbox"
+            className={styles.checkbox}
+            checked={filters.threeStops}
+            onChange={() => handleToggleFilter('threeStops')}
+          />
+          <span>3 пересадки</span>
         </label>
       </div>
     </div>

@@ -4,6 +4,13 @@
   gap: 20px;
 }
 
+.loading {
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+}
+
 .loadMoreButton {
   background: $blue-primary;
   color: $white;
