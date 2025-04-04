@@ -9,7 +9,7 @@ export const getSearchId = async () => {
   return searchId;
 };
 
-export const getTicketsBatch = async (searchId) => {
+/* export const getTicketsBatch = async (searchId) => {
   try {
     const response = await fetch(`${BASE_URL}/tickets?searchId=${searchId}`);
 
@@ -21,6 +21,12 @@ export const getTicketsBatch = async (searchId) => {
   } catch (error) {
     return getTicketsBatch(searchId);
   }
+}; */
+
+export const getTicketsBatch = async (searchId) => {
+  const response = await fetch(`${BASE_URL}/tickets?searchId=${searchId}`);
+  if (!response.ok) throw new Error('Ошибка загрузки');
+  return response.json();
 };
 
 export const getAllTickets = async (searchId, onBatchReceived) => {
