@@ -29,7 +29,6 @@ export const fetchTickets = () => {
       while (!stop) {
         try {
           const batch = await getTicketsBatch(searchId); // Получаем следующую пачку
-          console.log('batch', batch);
 
           allTickets.push(...batch.tickets); // Добавляем новые билеты в общий массив
 
@@ -39,7 +38,6 @@ export const fetchTickets = () => {
           });
 
           stop = batch.stop;
-          console.log('stop', stop);
         } catch (error) {
           console.error('Error fetching next batch:', error.message);
         }
