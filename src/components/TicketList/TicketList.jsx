@@ -67,7 +67,7 @@ const TicketList = () => {
   };
 
   if (loading && !stop) return <div className={styles.loading}>Загрузка билетов...</div>;
-  if (visibleTickets.length === 0)
+  if (visibleTickets.length === 0 && !loading)
     return <div className={styles.loading}>Рейсов, подходящих под заданные фильтры, не найдено</div>;
 
   return (
