@@ -67,7 +67,7 @@ const TicketList = () => {
   };
 
   if (loading && !stop) return <div className={styles.loading}>Загрузка билетов...</div>;
-  if (visibleTickets.length === 0 && stop)
+  if (visibleTickets.length === 0)
     return <div className={styles.loading}>Рейсов, подходящих под заданные фильтры, не найдено</div>;
 
   return (
@@ -79,18 +79,17 @@ const TicketList = () => {
 
       {/* Кнопка "Показать еще" */}
       {visibleTickets.length < sortedTickets.length && (
-        <button className={styles.loadMoreButton} onClick={loadMoreTickets} disabled={loading}>
-          {loading ? 'Загрузка...' : 'Показать еще 5 билетов'}
-        </button>
-      )}
+        <>
+          <button className={styles.loadMoreButton} onClick={loadMoreTickets} disabled={loading}>
+            {loading ? 'Загрузка...' : 'Показать еще 5 билетов'}
+          </button>
 
-      {/* Прогресс-бар */}
-      {
-        <div className={styles.progressContainer}>
-          <div className={styles.progressBar} style={{ width: `${progress}%` }} />
-          <div className={styles.progressText}>Загружено {progress}% билетов</div>
-        </div>
-      }
+          <div className={styles.progressContainer}>
+            <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+            <div className={styles.progressText}>Загружено {progress}% билетов</div>
+          </div>
+        </>
+      )}
 
       {/* когда все билеты загружены */}
       {stop && visibleTickets.length === sortedTickets.length && (
