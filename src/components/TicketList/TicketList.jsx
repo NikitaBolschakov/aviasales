@@ -8,7 +8,6 @@ import { nanoid } from 'nanoid';
 const TicketList = () => {
   const dispatch = useDispatch();
   const { firstTickets, tickets, loading, stop, totalCount } = useSelector((state) => state.tickets);
-  console.log(tickets);
 
   const filters = useSelector((state) => state.filter.filters); // текущие значения фильтров
   const sortBy = useSelector((state) => state.sort.sortBy); // текущий способ сортировки из store
