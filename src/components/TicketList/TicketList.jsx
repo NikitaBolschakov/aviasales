@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTickets } from '../../store/actions/tickets';
 import styles from './TicketList.module.scss';
 import Ticket from '../Ticket/Ticket';
+import { nanoid } from 'nanoid';
 
 const TicketList = () => {
   const dispatch = useDispatch();
-  const { tickets, loading, error, stop } = useSelector((state) => state.tickets);
+  const { firstTickets, tickets, loading, stop, totalCount } = useSelector((state) => state.tickets);
+  console.log(tickets);
+
   const filters = useSelector((state) => state.filter.filters); // текущие значения фильтров
   const sortBy = useSelector((state) => state.sort.sortBy); // текущий способ сортировки из store
 
@@ -17,20 +20,21 @@ const TicketList = () => {
     dispatch(fetchTickets());
   }, [dispatch]);
 
-  // Фильтрация билетов
-  const filteredTickets = tickets.filter((ticket) => {
-    // Если выбран фильтр "Все" пропускаем все билеты
+  // Рассчитываем прогресс загрузки (от 0 до 100)
+  const progress = tickets.length > 0 ? Math.min(100, Math.round((tickets.length / totalCount) * 100)) : 0;
+
+  // Если загрузка идет, показываем только первые билеты
+  const displayTickets = loading ? firstTickets : tickets;
+
+  // Фильтрация показываемых билетов
+  const filteredTickets = displayTickets.filter((ticket) => {
     if (filters.all) return true;
-
-    // Получаем количество пересадок в первом сегменте перелета
     const stopsCount = ticket.segments[0].stops.length;
-
-    // Проверяем соответствие билета выбранным фильтрам:
     return (
-      (filters.noStops && stopsCount === 0) || // Без пересадок
-      (filters.oneStop && stopsCount === 1) || // 1 пересадка
-      (filters.twoStops && stopsCount === 2) || // 2 пересадки
-      (filters.threeStops && stopsCount === 3) // 3 пересадки
+      (filters.noStops && stopsCount === 0) ||
+      (filters.oneStop && stopsCount === 1) ||
+      (filters.twoStops && stopsCount === 2) ||
+      (filters.threeStops && stopsCount === 3)
     );
   });
 
@@ -51,28 +55,26 @@ const TicketList = () => {
 
       return optimalValueA - optimalValueB;
     }
-
-    // Если сортировка не выбрана - оставляем исходный порядок
-    return 0;
+    return 0; // Если сортировка не выбрана - оставляем исходный порядок
   });
+
+  // Видимые билеты после фильтрации и сортировки
+  const visibleTickets = sortedTickets.slice(0, visibleCount);
 
   // Функция для загрузки дополнительных билетов
   const loadMoreTickets = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // Увеличиваем счетчик на 5
+    setVisibleCount((prevCount) => prevCount + 5);
   };
 
-  // Берем необходимое количество билетов
-  const visibleTickets = sortedTickets.slice(0, visibleCount);
-
   if (loading && !stop) return <div className={styles.loading}>Загрузка билетов...</div>;
-  if (visibleTickets.length === 0)
+  if (visibleTickets.length === 0 && stop)
     return <div className={styles.loading}>Рейсов, подходящих под заданные фильтры, не найдено</div>;
-  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     <div>
-      {visibleTickets.map((ticket, index) => (
-        <Ticket key={index} ticket={ticket} />
+      {/* Отображаем только видимые билеты */}
+      {visibleTickets.map((ticket) => (
+        <Ticket key={nanoid()} ticket={ticket} />
       ))}
 
       {/* Кнопка "Показать еще" */}
@@ -82,8 +84,16 @@ const TicketList = () => {
         </button>
       )}
 
+      {/* Прогресс-бар */}
+      {
+        <div className={styles.progressContainer}>
+          <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+          <div className={styles.progressText}>Загружено {progress}% билетов</div>
+        </div>
+      }
+
       {/* когда все билеты загружены */}
-      {stop && visibleTickets.length === sortedTickets.length && sortedTickets.length > 0 && (
+      {stop && visibleTickets.length === sortedTickets.length && (
         <div className={styles.endMessage}>Все билеты показаны</div>
       )}
     </div>

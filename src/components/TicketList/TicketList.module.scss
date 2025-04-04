@@ -4,6 +4,26 @@
   gap: 20px;
 }
 
+.progressContainer {
+  margin-bottom: 20px;
+  background-color: #f3f7fa;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 22px;
+  background: #53beec2d;
+  transition: width 0.3s ease;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.progressText {
+  color: $black-text;
+  text-align: center;
+  margin-top: -22px;
+}
+
 .loading {
   font-weight: 600;
   width: 100%;
@@ -12,6 +32,7 @@
 }
 
 .loadMoreButton {
+  position: relative;
   background: $blue-primary;
   color: $white;
   border: none;
